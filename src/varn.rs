@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum VarnType {
     SWAR,
     VYANJAN,
@@ -68,5 +68,97 @@ impl Varn {
                 matra: Varn::setmatra(sym),
                 varn_type: Varn::settype(sym),
             }
+    }
+
+    pub fn copy(&self) -> Self {
+        Varn {
+            symbol : self.symbol,
+            scalar : self.scalar,
+            matra : self.matra,
+            varn_type: self.varn_type.clone(),
+        }
+    }
+
+    pub fn is_avgrah(&self) -> bool {
+        if self.symbol == 'ऽ'{
+            return true;
+        }
+        return false;
+    }
+
+    pub fn is_halant(&self) -> bool {
+        if self.varn_type == VarnType::HALANT {
+            return true;
+        }
+        return false;
+    }
+
+    pub fn is_swar(&self) -> bool {
+        if self.varn_type == VarnType::SWAR {
+            return true;
+        }
+        return false;
+    }
+
+    pub fn is_vyanjan(&self) -> bool {
+        if self.varn_type == VarnType::VYANJAN {
+            return true;
+        }
+        return false;
+    }
+
+    pub fn is_chihn(&self) -> bool {
+        if self.varn_type == VarnType::CHIHN {
+            return true;
+        }
+        return false;
+    }
+}
+
+pub struct VarnList {
+    varns: Vec<Varn>,
+}
+
+impl VarnList {
+    pub fn new() -> Self {
+        VarnList {
+            varns: Vec::new(),
+        }
+    }
+
+    pub fn push(&mut self, new_varn: Varn) {
+        self.varns.push(new_varn);
+    }
+
+    pub fn pop(&mut self) -> Option<Varn> {
+        return self.varns.pop();
+    }
+
+    pub fn copy(&self) -> VarnList {
+        let mut varnlistcp = VarnList::new();
+        for varn in &self.varns {
+            varnlistcp.varns.push(varn.copy());
+        }
+
+        return varnlistcp;
+    }
+
+    pub fn print_varns(&self) {
+        for varn in &self.varns {
+            print!("{}", varn.symbol);
+        }
+       print!(" ");
+    }
+
+    pub fn print(&self) {
+        for varn in &self.varns {
+            print!("{}", varn.symbol);
+        }
+       print!("\t");
+    }
+
+
+    pub fn reverse(&mut self) {
+        self.varns.reverse();
     }
 }
