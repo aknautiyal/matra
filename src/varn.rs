@@ -50,6 +50,10 @@ impl Varn {
         vtype
     }
 
+    pub fn getmatra(&self) -> u32 {
+        return self.matra;
+    }
+
     pub fn from_scalar(new_scalar: u32) -> Self {
         let sym = std::char::from_u32(new_scalar).unwrap();
         Self {
