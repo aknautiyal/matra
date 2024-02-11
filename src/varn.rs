@@ -165,4 +165,17 @@ impl VarnList {
     pub fn reverse(&mut self) {
         self.varns.reverse();
     }
+
+    pub fn parse_word(word: &str) -> Result<Self, &'static str> {
+        let mut varns = Vec::new();
+
+        for symbol in word.chars() {
+            let varn = Varn::from_char(symbol);
+            varns.push(varn);
+        }
+
+        Ok(VarnList { varns
+        })
+    }
+
 }
