@@ -11,6 +11,12 @@ use vakya::Vakya;
 fn main() {
     let mut vakyas = Vakya::from_file("src/input.txt").unwrap();
     for vakya in vakyas.iter_mut() {
+        vakya.print_pretty();
+        println!();
+    }
+
+
+    for vakya in vakyas.iter_mut() {
         vakya.print();
         println!();
     }

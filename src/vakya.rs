@@ -47,4 +47,18 @@ impl Vakya {
             s.print();
         }
     }
+
+    pub fn print_pretty(&mut self) {
+        for s in self.shabds.iter() {
+            s.base.print();
+        }
+
+        println!();
+        let mut total = 0;
+        for s in self.shabds.iter() {
+            total += s.matra;
+            print!("{}\t",s.matra);
+        }
+        print!("={}", total);
+    }
 }
